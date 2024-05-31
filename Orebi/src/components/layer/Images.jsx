@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Images = ({ href, src, alt }) => {
+const Images = ({ href, src, alt, className }) => {
   return (
     <Link to={href}>
       <picture>
-        <img src={src} alt={alt} />
+        <img className={className} src={src} alt={alt} />
       </picture>
     </Link>
   )

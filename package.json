@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "firebase": "^10.12.2",
+    "react-loader-spinner": "^6.1.6",
+    "react-paginate": "^8.2.0",
+    "react-toastify": "^10.0.5"
+  }
+}

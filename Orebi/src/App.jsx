@@ -1,18 +1,41 @@
 import React from 'react'
+import Home from './components/page/Home';
+import RootLayout from './components/layer/RootLayout';
+import Shop from './components/page/Shop';
+import About from './components/page/About';
+import Contact from './components/page/Contact';
+import Journal from './components/page/Journal';
+import Error from './components/page/Error';
 
 import {
+  createRoutesFromElements,
   createBrowserRouter,
+  Route,
   RouterProvider,
 } from "react-router-dom";
-import Home from './components/page/Home';
+import SignUp from './components/page/SignUp';
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home/>,
-  },
-]);
+    <Route
+      path="/"
+      element={<RootLayout />}
+      errorElement={<Error/>}
+    >
+      <Route index element={<Home />}></Route>
+      <Route path='/Home' element={<Home />}></Route>
+      <Route path='/Shop' element={<Shop />}></Route>
+      <Route path='/About' element={<About />}></Route>
+      <Route path='/Contact' element={<Contact />}></Route>
+      <Route path='/Journal' element={<Journal />}></Route>
+      <Route path='/Signup' element={<SignUp />}></Route>
+    </Route>
+      </>
+  )
+);
+
 
 const App = () => {
   return (
