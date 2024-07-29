@@ -7,6 +7,7 @@ import { FaInstagram } from "react-icons/fa";
 import Images from './layer/Images'
 
 
+
 const Footer = () => {
   return (
     <div className="pt-[55px] pb-[52px] bg-[#F5F5F3] mt-[106px]">

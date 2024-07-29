@@ -14,6 +14,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import SignUp from './components/page/SignUp';
+import ProductDetails from './components/page/ProductDetails';
+import Checkout from './components/page/Checkout';
+import Cart from './components/page/Cart';
+import Login from './components/page/Login';
+import Myaccount from './components/page/Myaccount';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +36,11 @@ const router = createBrowserRouter(
       <Route path='/Contact' element={<Contact />}></Route>
       <Route path='/Journal' element={<Journal />}></Route>
       <Route path='/Signup' element={<SignUp />}></Route>
+      <Route path='/ProductDetails' element={<ProductDetails />}></Route>
+      <Route path='/Cart' element={<Cart />}></Route>
+      <Route path='/CheckOut' element={<Checkout />}></Route>
+      <Route path='/Login' element={<Login />}></Route>
+      <Route path='/Myaccount' element={<Myaccount />}></Route>
     </Route>
       </>
   )

@@ -8,6 +8,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import CategoryDropdown from './layer/dropdowns/CategoryDropdown';
 import AccountDropdown from './layer/dropdowns/AccountDropdown';
 import ShoppingCartDropdown from './layer/dropdowns/ShoppingCartDropdown';
+import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 
 const Search = () => {
 
@@ -57,7 +58,7 @@ const Search = () => {
 
             <div ref={catRef} className="Category flex gap-[10.71px] items-center relative">
 
-                <p  className="flex gap-x-2 items-center text-[#262626] font-DM text-[14px] font-normal"> <Images src="./src/assets/Icon.png" alt="Bar.png"/> Shop By Category</p>
+                <p  className="flex gap-x-2 items-center text-[#262626] cursor-pointer font-DM text-[14px] font-normal"> <HiOutlineBars3BottomLeft/> Shop By Category</p>
 
                 {cat && (
                   <CategoryDropdown/>

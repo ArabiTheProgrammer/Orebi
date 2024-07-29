@@ -22,7 +22,7 @@ const Contact = () => {
           </div>
           <div className="inputfield2 mt-[23px]">
             <p className="text-base text-[#262626] font-bold">Email</p>
-            <input className="text-sm w-[779px] outline-none border-b border-[#F0F0F0] pb-[16.5px] mt-[10px]" type="text" placeholder='Your email here'/>
+            <input className="text-sm w-[779px] outline-none border-b border-[#F0F0F0] pb-[16.5px] mt-[10px]" type="email" placeholder='Your email here'/>
           </div>
           <div className="inputfield3 mt-[23px]">
             <p className="text-base text-[#262626] font-bold">Message</p>
