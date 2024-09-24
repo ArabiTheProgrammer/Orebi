@@ -5,6 +5,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import Images from './layer/Images'
+import FooterLogo from '../assets/FooterLogo.png'
 
 
 
@@ -88,7 +89,7 @@ const Footer = () => {
             </div>
         </div>
         <div className="right flex flex-col justify-between">
-            <Images className="hidden md:block" href="/" src="./src/assets/FooterLogo.png" alt="Footer_Logo.png"/>
+            <Images className="hidden md:block" href="/" src={FooterLogo} alt="Footer_Logo.png"/>
             <p className="text-[#6D6D6D] md:text-sm md:mr-36 text-xs text-center font-normal font-DM">2024 Orebi Minimal eCommerce Figma Template by Arabi</p>
         </div>
       </Container>

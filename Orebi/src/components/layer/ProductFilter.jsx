@@ -12,7 +12,7 @@ let [ showheading, setShowheading ] = useState(false)
 let [ show2, setShow2 ] = useState(false) 
   return (
     <div>
-      <h3 onClick={()=> setShowheading(!showheading)} className=" font-DM font-bold text-[20px] pb-[35px] text-[#262626] flex justify-between items-center">
+      <h3 onClick={()=> setShowheading(!showheading)} className=" font-DM font-bold w-full text-[20px] pb-[35px] text-[#262626] flex justify-between items-center">
         {catitle}
       <GoTriangleUp className={` cursor-pointer transition-all duration-300 ${showheading?"rotate-0":"rotate-180"}`}/>
       </h3>

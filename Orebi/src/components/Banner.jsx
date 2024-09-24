@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import Slider from "react-slick";
 import Images from './layer/Images'
+import Banner1 from '../assets/Banner.jpg'
+import Banner2 from '../assets/Banner.jpg'
+import Banner3 from '../assets/Banner.jpg'
 import { Link } from 'react-router-dom'
 
 const Banner = () => {
@@ -113,17 +116,17 @@ const Banner = () => {
       <Slider {...settings}>
       <div className="bg-slate-400 text-center">
         <Link>
-          <Images className="!w-full" href="/" src="./src/assets/Banner.jpg" alt="Ads.jpg"/>
+          <Images className="!w-full" href="/" src={Banner1} alt="Ads.jpg"/>
         </Link>
       </div>
       <div className="bg-slate-400 text-center">
         <Link>
-          <Images className="!w-full" href="/" src="./src/assets/Banner.jpg" alt="Ads.jpg"/>
+          <Images className="!w-full" href="/" src={Banner2} alt="Ads.jpg"/>
         </Link>
       </div>
       <div className="bg-slate-400 text-center">
         <Link>
-          <Images className="!w-full" href="/" src="./src/assets/Banner.jpg" alt="Ads.jpg"/>
+          <Images className="!w-full" href="/" src={Banner3} alt="Ads.jpg"/>
         </Link>
       </div>
     </Slider>

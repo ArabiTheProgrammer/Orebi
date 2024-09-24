@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Container from './layer/Container'
-import Images from './layer/Images'
 import { FaSearch } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { TiArrowSortedDown } from "react-icons/ti";

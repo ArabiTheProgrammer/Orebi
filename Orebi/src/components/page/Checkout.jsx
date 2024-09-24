@@ -30,6 +30,8 @@ const Checkout = () => {
                 Germany</option>
                         <option className='p-7'value="Featured">
                 UK</option>
+                        <option className='p-7'value="Featured">
+                None Of The Above</option>
                 </select>
             </div>
 

@@ -7,9 +7,9 @@ import ProductItems3 from './layer/products/ProductItems3'
 import ProductItems4 from './layer/products/ProductItems4'
 import ProductItems5 from './layer/products/ProductItems5';
 import ProductItem6 from './layer/products/ProductsItems6';
+import ProductItem9 from './layer/products/ProductItems9';
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import ProductItem9 from './layer/products/ProductItems9';
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -82,7 +82,7 @@ const Arrivals = () => {
       <Container className="max-w-[1640px]">
          <Slider {...settings}>
           <div>
-            <ProductItems2 className="lg:!ml-9" offer="10%"/>
+            <ProductItems2 className="lg:!ml-9" offer="New"/>
           </div>
           <div>
             <ProductItems5 className="lg:!ml-9" offer="New"/>

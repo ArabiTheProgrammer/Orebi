@@ -38,11 +38,12 @@ const Shop = () => {
                 <div className="w-full flex justify-between mb-[60px]">
                   <div className="Icon">
                   <div className="Icons flex items-center gap-x-5">
-                    <div className=" cursor-pointer transition-all duration-300 w-9 h-9 border border-[#F0F0F0] flex justify-center items-center hover:text-[#767676] text-[#FFF] bg-[#262626] hover:bg-transparent">           
-                    <IoGrid/>
+                    <div className=" cursor-pointer transition-all duration-300 w-9 h-9 border border-[#F0F0F0] flex justify-center items-center  hover:text-[#767676] text-[#FFF] bg-[#262626] hover:bg-transparent">           
+                    <IoGrid className='lg:static'/>
                     </div>
-                    <div className=" cursor-pointer transition-all duration-300 w-9 h-9 border border-[#F0F0F0] flex justify-center items-center text-[#767676] hover:text-[#FFF] bg-transparent hover:bg-[#262626]">
-                    <FaList/>
+                    <div className=" cursor-pointer lg:static 
+                    sm:hidden md:hidden transition-all duration-300 w-9 h-9 border border-[#F0F0F0] flex justify-center items-center text-[#767676] hover:text-[#FFF] bg-transparent hover:bg-[#262626]">
+                    <FaList className='lg:static'/>
                     </div>
                   </div>
                   </div>

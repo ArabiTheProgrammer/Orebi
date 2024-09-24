@@ -5,156 +5,201 @@ import Title from '../layer/Title'
 import Input from '../layer/Input'
 import Button from '../layer/Button'
 import FormError from '../layer/FormError'
+import Inputforpassword from '../layer/Inputforpassword'
+import { Blocks } from 'react-loader-spinner'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { useNavigate } from 'react-router-dom'
+
 const Signup = () => {
+
+    let [checkbox, setcheckbox] = useState(false)
+    let [checkbox2, setcheckbox2] = useState(false)
     
-    let [firstName, setFirstName] = useState("")
-    let [firstNameerr, setFirstNameerr] = useState("")
-    
-    let [lastName, setLastName] = useState("")
-    let [lastNameerr, setLastNameerr] = useState("")
-
-    let [address1, setAddress1] = useState("")
-    let [address1err, setAddress1err] = useState("")
-
-    let [address2, setAddress2] = useState("")
-    let [address2err, setAddress2err] = useState("")
-
-    let [city, setCity] = useState("")
-    let [cityerr, setCityerr] = useState("")
-
-    let [code, setCode] = useState("")
-    let [codeerr, setCodeerr] = useState("")
-
-    let [division, setDivision] = useState("")
-    let [divisionerr, setDivisionerr] = useState("")
-
-    let [district, setDistrict] = useState("")
-    let [districterr, setDistricterr] = useState("")
-
-    let changeFirstName=(e)=>{
-        setFirstName(e.target.value)
+    let [firstName, setFirstName] = useState('')
+    let [firstNameerr,setFirstNameerr] = useState('')
+    let changefirstName = (e)=>{
+        setFirstName(e.target.value);
         setFirstNameerr("")
     }
 
-    let changeLastName=(e)=>{
-        setLastName(e.target.value)
+    let [lastName,setLastName] = useState('')
+    let [lastNameerr,setLastNameerr] = useState('')
+    let changelastName = (e)=>{
+        setLastName(e.target.value);
         setLastNameerr("")
     }
 
-    let changeEmail=(e)=>{
-        setEmail(e.target.value)
+    let [email, setEmail] = useState('')
+    let [emailerr, setEmailerr] = useState('')
+    let changeEmail = (e)=>{
+        setEmail(e.target.value);
         setEmailerr("")
     }
 
-    let changeTel=(e)=>{
-        setTel;(e.target.value)
+    let [tel,setTel] = useState('')
+    let [telerr,setTelerr] = useState('')
+    let changeTel = (e)=>{
+        setTel(e.target.value);
         setTelerr("")
     }
 
-    let changeAddress1=(e)=>{
-        setAddress1;(e.target.value)
-        setAddress1err("")
+    let [address,setAddress] = useState('')
+    let [addresserr,setAddresserr] = useState('')
+    let changeAddress = (e)=>{
+        setAddress(e.target.value);
+        setAddresserr("")
     }
 
-    let changeAddress2=(e)=>{
-        setAddress2;(e.target.value)
-        setAddress2err("")
-    }
-
-    let changeCity=(e)=>{
-        setCity;(e.target.value)
+    let [city,setCity] = useState('')
+    let [cityerr,setCityerr] = useState('')
+    let changeCity = (e)=>{
+        setCity(e.target.value);
         setCityerr("")
     }
 
-    let changeCode=(e)=>{
-        setCode;(e.target.value)
-        setCodeerr("")
-    }
-
-    let changeDivision=(e)=>{
-        setDivision;(e.target.value)
+    let [postcode,setPostcode] = useState('')
+    let [postcodeerr,setPostcodeerr] = useState('')
+    let changePostcode = (e)=>{
+        setPostcode(e.target.value);
+        setPostcodeerr("")
+    } 
+    
+    let [district,setDistrict] = useState('')
+    let [districterr,setDistricterr] = useState('')
+    let changeDistrict = (e)=>{
+        setDistrict(e.target.value);
+        setDistricterr("")
+    }   
+    
+    let [division,setDivision] = useState('')
+    let [divisionerr,setDivisionerr] = useState('')
+    let changeDivision = (e)=>{
+        setDivision(e.target.value);
         setDivisionerr("")
     }
 
-    let changeDistrict=(e)=>{
-        setDistrict;(e.target.value)
-        setDistricterr("")
+    let [password,setPassword] = useState('')
+    let [passworderr,setPassworderr] = useState('')
+    let changePassword = (e)=>{
+        setPassword(e.target.value);
+        setPassworderr("")
     }
 
-    let changePassword=(e)=>{
-        setPassword;(e.target.value)
-        setpassworderr("")
+    let [spinner , setSpinner] = useState(true)
+    
+    let navigate = useNavigate()
+
+    const auth = getAuth();
+     
+    let [repeatpassword,setRepeatpassword] = useState('')
+    let [repeatpassworderr,setRepeatpassworderr] = useState('')
+    let changeRepeatpassword = (e)=>{
+        setRepeatpassword(e.target.value);
+        setRepeatpassworderr("")
     }
 
-    let changeRepeatPassword=(e)=>{
-        setRepeatPassword;(e.target.value)
-        setRepeatPasswordErr("")
-    }
-
-    let submit=()=>{
+    let submit = ()=>{
+        
         if (!firstName) {
             setFirstNameerr("First Name is required")
         }
 
-        if (!lastName) {         
+        if (!lastName) {
             setLastNameerr("Last Name is required")
-        }
-
-        if (!tel) {
-            setTelerr("Your phone number is required")
         }
 
         if (!email) {
             setEmailerr("Email is required")
+        }else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(email)){
+            setEmailerr("You have input an invalid email address!")
         }
 
-        if (!address1) {
-            setAddress1err("Address 1 is required")
+        if (!tel) {
+            setTelerr("Telephone Number is required")
         }
 
-        if (!address2) {
-            setAddress2err("Address 2 is required")
+        if (!address) {
+            setAddresserr("Address is required")
         }
 
         if (!city) {
-            setCityerr("Your city name is required")
+            setCityerr("City Name is required")
         }
 
-        if (!code) {
-            setCodeerr("Your post code is required")
+        if (!postcode) {
+            setPostcodeerr("Post code is required")
         }
 
         if (!division) {
-            setDivisionerr("Your division is required")
+            setDivisionerr("Division Name is required")
         }
 
         if (!district) {
-            setDistricterr("Your district is required")
-        }
-   
-        if (!password) {
-            setPassworderr("A password is required")
+            setDistricterr("District Name is required")
         }
 
-        if (!repeatPassword) {
-            setRepeatPasswordErr("Please repeat your password")
+        if (!password) {
+            setPassworderr("Password is required")
+        }else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/.test(password)) {
+            setPassworderr("1 uppercase, 1 number, 1 special character and more than 8 characters is required")
         }
+
+        if (!repeatpassword) {
+            setRepeatpassworderr("Input the password again")
+        }
+
+        
+        // ===================================================================================================      
+
+
+        if (firstName && email && password && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(email))
+       
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            setFirstName("")
+            setSpinner(false)
+            toast.success('Registration Successful');
+            setTimeout(()=>{
+                navigate("/login")
+            }, 3000)
+
+            console.log(user);
+            
+            // ...
+        })
+        .catch((error) => {
+            if (error.code.includes("auth/email-already-in-use"))   
+                setEmailerr("Email already in use")   
+        });
+
     }
 
-    let [email, setEmail] = useState("")
-    let [emailerr, setEmailerr] = useState("")
-
-    let [tel, setTel] = useState("")
-    let [telerr, setTelerr] = useState("")
-
-    let [password, setPassword] = useState("")
-    let [passworderr, setPassworderr] = useState("")
-
-    let [repeatPassword, setRepeatPassword] = useState("")
-    let [repeatPasswordErr, setRepeatPasswordErr] = useState("")
 
     return (
         <div>
+
+            <ToastContainer  
+
+            className="!text-white w-48 md:w-auto"
+
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition= "Bounce"/>
+            {/* Same as */}
+            <ToastContainer />
+
         <Container>
             <Breadcrumb className="lg:mt-[124px] lg:mb-[127px] mt-[60px] mb-[60px]" text="Sign up"/>
                 <div className='border-b border-[#F0F0F0]'> 
@@ -164,98 +209,119 @@ const Signup = () => {
                 </div>
             <Title className="text-[#262626] lg:text-[39px] text-base fon font-bold lg:mt-[57px] mt-10 lg:mb-[42px] mb-6" text="Your Personal Details"/>
             <div className='flex flex-wrap lg:gap-y-6 lg: gap-y-3 lg:gap-x-10 gap-x-5'>
-                <Input value={firstName} onChange={changeFirstName} type="text" text="First Name" placeholder="First Name ">
-                {
-                    firstNameerr && 
-                    <FormError error={firstNameerr}/>            
-                }
+                <Input value={firstName} onChange={changefirstName} type="text" text="First Name" placeholder="First Name ">
+                    {
+                        firstNameerr &&
+                        <FormError error={firstNameerr}/>   
+                    }         
                 </Input>
-                <Input value={lastName} onChange={changeLastName} type="text" text="Last Name" placeholder="Last Name ">
-                {
-                    lastNameerr && 
-                    <FormError error={lastNameerr}/>            
-                }
+                <Input value={lastName} onChange={changelastName} type="text" text="Last Name" placeholder="Last Name ">
+                    {
+                        lastNameerr &&
+                        <FormError error={lastNameerr}/>  
+                    }          
                 </Input>                              
                 <Input value={email} onChange={changeEmail} type="email" text="Email Address" placeholder="company@domain.com">
-                {
-                    emailerr && 
-                    <FormError error={emailerr}/>            
-                }
+                    {
+                        emailerr &&
+                        <FormError error={emailerr}/>   
+                    }         
                 </Input>                              
-                <Input value={tel} onChange={changeTel} type="number" text="Telephone" placeholder="Your number here">
-                {
-                    telerr && 
-                    <FormError error={telerr}/>            
-                }
+                <Input value={tel} onChange={changeTel} type="tel" text="Telephone" placeholder="Your number here">                
+                    {
+                        telerr &&
+                        <FormError error={telerr}/>  
+                    }          
                 </Input>                              
             </div>
             <Title className="text-[#262626] lg:text-[39px] text-base fon font-bold lg:mt-[57px] mt-10 lg:mb-[42px] mb-6" text="New Customer"/>
             <div className='flex flex-wrap lg:gap-y-6 lg: gap-y-3 lg:gap-x-10 gap-x-5'>                          
-                <Input value={address1} onChange={changeAddress1} type="text" text="Address 1" placeholder="4279 Zboncak Port Suite 6212">
+                <Input value={address} onChange={changeAddress} type={"text"} text="Address 1" placeholder="4279 Zboncak Port Suite 6212">
                 {
-                    address1err && 
-                    <FormError error={address1err}/>            
+                    addresserr &&
+                    <FormError error={addresserr}/>            
                 }
                 </Input>             
-                <Input value={address2} onChange={changeAddress2} type="text" text="Address 2" placeholder="_">
-                {
-                    address2err && 
-                    <FormError error={address2err}/>            
-                }
+                <Input type="text" text="Address 2" placeholder="( Optional )">
                 </Input>
                 <Input value={city} onChange={changeCity} type="text" text="City" placeholder="Your city">
-                {
-                    cityerr && 
-                    <FormError error={cityerr}/>            
-                }
+                    {
+                        cityerr &&
+                        <FormError error={cityerr}/> 
+                    }           
                 </Input>           
-                <Input value={code} onChange={changeCode} type="number" text="Post Code" placeholder="05228">
-                {
-                    codeerr && 
-                    <FormError error={codeerr}/>            
-                }
+                <Input value={postcode} onChange={changePostcode} type="number" text="Post Code" placeholder="05228">
+                    {
+                        postcodeerr &&
+                        <FormError error={postcodeerr}/>  
+                    }          
                 </Input>                              
                 <Input value={division} onChange={changeDivision} type="select" text="Division" placeholder="Please select">
-                {
-                    divisionerr && 
-                    <FormError error={divisionerr}/>            
-                }
+                    {
+                        divisionerr &&
+                        <FormError error={divisionerr}/>   
+                    }         
                 </Input> 
                 <Input value={district} onChange={changeDistrict} type="select" text="District" placeholder="Please select">
-                {
-                    districterr && 
-                    <FormError error={districterr}/>            
-                }
+                    {
+                        districterr &&
+                        <FormError error={districterr}/>   
+                    }         
                 </Input>
             </div> 
             <div className='border-b border-[#F0F0F0]'> 
                 <Title className="text-[#262626] lg:text-[39px] text-base fon font-bold lg:mt-[57px] mt-10 lg:mb-[42px] mb-6" text="Your Password"/>
             <div className='flex lg:gap-x-10 gap-x-5 lg:pb-16 pb-8'>
-                <Input type="password" text="Your Password" placeholder="Password">
-                {
-                    passworderr && 
-                    <FormError error={passworderr}/>            
-                }
-                </Input>                                           
-                <Input type="password" text="Repeat Password" placeholder="Repeat Password">
-                {
-                    repeatPasswordErr && 
-                    <FormError error={repeatPasswordErr}/>            
-                }
-                </Input>                                           
+                  <Inputforpassword value={password} onchange={changePassword} label="Password" id="Password" placeholder="Password">
+                      {
+                        passworderr &&  
+                        <FormError error={passworderr}/>   
+                      }         
+                    </Inputforpassword>
+                    <Inputforpassword value={repeatpassword} onchange={changeRepeatpassword} label="Repeat Password" id="Repeat Password" placeholder="Repeat Password">
+                      {
+                          repeatpassworderr &&
+                          <FormError error={repeatpassworderr}/>   
+                      }         
+                    </Inputforpassword>                                          
              </div>
             </div>
-            <div className='text-[#767676] text-base font-normal flex flex-col gap-y-6' >
-                <p className='flex items-center gap-x-4 lg:mt-16 mt-4'><span><input type="checkbox" /></span>I have read and agree to the Privacy Policy</p>
-                <p className='flex items-center'>Subscribe Newsletter 
-                <span className='pl-8'><input type="checkbox" /></span>
-                <span className='pl-4'>Yes</span>
-                <span className='pl-10'><input type="checkbox" /></span>
-                <span className='pl-4'>No</span>
-                </p>
-                <Button onClick={submit} className="lg:py-4 py-2 lg:pl-[77px] pl-[37px] lg:pr-[83px] pr-[41px] w-[200px]" text="Login"/>   
+            <div className="px-3 lg:px-0">
+            <div className='flex gap-x-[15px] lg:mt-[65px] mt-[35px]' >
+            <div onClick={()=>{setcheckbox2(!checkbox2)}} className=' cursor-pointer relative w-4 h-4 border-2 border-[#767676]'>
+                <div className={`w-2 h-2 bg-[#767676] absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] ${checkbox2 ? "absolute":"hidden"}`}></div>
+                </div>
+                <p className='lg:text-sm sm:text-xs text-[10px] font-normal font-DM text-[#767676]'>I have read and agree to the Privacy Policy</p>
             </div>
-        </Container>
+            <div className='flex gap-x-[15px] lg:mb-[27px] md:mb-5 sm:mb-4 mb-3 lg:mt-[23px] mt-[10px]'>
+                <p className='lg:text-sm sm:text-xs text-[10px] font-normal font-DM text-[#767676]'>Subscribe Newsletter</p>
+                <div onClick={()=>{setcheckbox(!checkbox)}} className=' cursor-pointer relative w-4 h-4 border-2 border-[#767676]'>
+                <div className={`w-2 h-2 bg-[#767676] absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] ${checkbox ? "hidden":"absolute"}`}></div>
+                </div>
+                <label className='lg:text-sm sm:text-xs text-[10px] font-normal font-DM text-[#767676]' htmlFor="yes">Yes</label>
+                <div onClick={()=>{setcheckbox(!checkbox)}} className=' cursor-pointer relative w-4 h-4 border-2 border-[#767676]'>
+                <div className={`w-2 h-2 bg-[#767676] absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] ${checkbox ? "absolute":"hidden"}`}></div>
+                </div>
+                <label className='lg:text-sm sm:text-xs text-[10px] font-normal font-DM text-[#767676]' htmlFor="no">No</label>
+           </div>
+
+           {
+            spinner ?
+            <Button onClick={submit}  text="Log in" className="w-[200px] py-3 lg:mb-[140px] md:mb-32 sm:mb-24 mb-20"/>         
+            :<Blocks
+            height="80"
+            width="80"
+            color="#4fa94d"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+            visible={true}
+            />
+           }
+           
+                    
+           </div>
+         </Container>
     </div>
     )
 }

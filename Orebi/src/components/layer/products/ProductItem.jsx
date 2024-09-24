@@ -2,12 +2,13 @@ import React from 'react'
 import { FaHeart } from "react-icons/fa";
 import { TfiReload } from "react-icons/tfi";
 import { FaShoppingCart } from "react-icons/fa";
+import pic1 from '../../../assets/pic1.jpg'
 
 const ProductItem = ({ offer, className }) => {
   return (
     <div className={`lg:w-[370px] w-[160px] mx-auto lg:ml-0 ml-[10px] group ${className}`} >
       <div className="image w-full lg:h-[370px] h-[160px] bg-slate-300 relative overflow-hidden">
-        <img className="w-full h-full object-cover" src="./src/assets/pic1.jpg" alt="Crushing_Pot.jpg" />
+        <img className="w-full h-full object-cover" src={pic1} alt="Crushing_Pot.jpg" />
         <button className="absolute lg:left-5 lg:top-5 left-2 top-1 bg-[#262626] border border-[#262626] hover:bg-transparent hover:text-[#262626] transition-all duration-500 text-white lg:px-8 lg:py-2 px-4 py-[1px]">
             {offer}
         </button>
