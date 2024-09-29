@@ -35,8 +35,8 @@ const router = createBrowserRouter(
       <Route path='/About' element={<About />}></Route>
       <Route path='/Contact' element={<Contact />}></Route>
       <Route path='/Journal' element={<Journal />}></Route>
-      <Route path='/Signup' element={<SignUp />}></Route>
-      <Route path='/ProductDetails' element={<ProductDetails />}></Route>
+      <Route path='/Sign/up' element={<SignUp />}></Route>
+      <Route path='/Product/Details' element={<ProductDetails />}></Route>
       <Route path='/Cart' element={<Cart />}></Route>
       <Route path='/CheckOut' element={<Checkout />}></Route>
       <Route path='/Login' element={<Login />}></Route>

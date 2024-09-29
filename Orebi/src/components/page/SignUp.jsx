@@ -6,10 +6,10 @@ import Input from '../layer/Input'
 import Button from '../layer/Button'
 import FormError from '../layer/FormError'
 import Inputforpassword from '../layer/Inputforpassword'
-import { Blocks } from 'react-loader-spinner'
+import { Blocks, ColorRing } from 'react-loader-spinner'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification  } from "firebase/auth"
 import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
@@ -148,32 +148,51 @@ const Signup = () => {
 
         if (!repeatpassword) {
             setRepeatpassworderr("Input the password again")
+        }else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/.test(repeatpassword)){
+            setRepeatpassworderr("Incorrect Password")
         }
 
         
         // ===================================================================================================      
 
 
-        if (firstName && email && password && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(email))
+        if (firstName && lastName && email && tel && address &&  city && postcode && division && district && password && repeatpassword && /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/ && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/)
        
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
             setFirstName("")
+            setLastName("")
+            setTel("")
+            setAddress("")
+            setCity("")
+            setPostcode("")
+            setDivision("")
+            setDistrict("")
+            setPassword("")
+            setPassworderr("")
             setSpinner(false)
-            toast.success('Registration Successful');
-            setTimeout(()=>{
-                navigate("/login")
-            }, 3000)
+            toast.success('Registration Successful');      
 
             console.log(user);
             
             // ...
         })
+        .then(()=>{
+            sendEmailVerification(auth.currentUser)
+                .then(() => {
+                    console.log("Send Email");
+                    setTimeout(()=>{
+                        navigate("/login")
+                    }, 3000)
+                });
+        })
         .catch((error) => {
-            if (error.code.includes("auth/email-already-in-use"))   
+            if (error.code.includes("auth/email-already-in-use")){
                 setEmailerr("Email already in use")   
+            }   
+            toast.error('Something Went Wrong!')
         });
 
     }
@@ -208,29 +227,29 @@ const Signup = () => {
                     </p>
                 </div>
             <Title className="text-[#262626] lg:text-[39px] text-base fon font-bold lg:mt-[57px] mt-10 lg:mb-[42px] mb-6" text="Your Personal Details"/>
-            <div className='flex flex-wrap lg:gap-y-6 lg: gap-y-3 lg:gap-x-10 gap-x-5'>
+            <div className='flex flex-wrap lg:gap-y-6 gap-y-3 lg:gap-x-10 gap-x-5'>
                 <Input value={firstName} onChange={changefirstName} type="text" text="First Name" placeholder="First Name ">
                     {
                         firstNameerr &&
-                        <FormError error={firstNameerr}/>   
+                        <FormError className="sm:mt-[-15px] md:mt-[-15px] lg:mt-[1px] mt-[-20px]" error={firstNameerr}/>   
                     }         
                 </Input>
                 <Input value={lastName} onChange={changelastName} type="text" text="Last Name" placeholder="Last Name ">
                     {
                         lastNameerr &&
-                        <FormError error={lastNameerr}/>  
+                        <FormError className="sm:mt-[-15px] md:mt-[-15px] lg:mt-[1px] mt-[-20px]" error={lastNameerr}/>  
                     }          
                 </Input>                              
                 <Input value={email} onChange={changeEmail} type="email" text="Email Address" placeholder="company@domain.com">
                     {
                         emailerr &&
-                        <FormError error={emailerr}/>   
+                        <FormError className="sm:mt-[-15px] md:mt-[-15px] lg:mt-[1px] mt-[-20px]" error={emailerr}/>   
                     }         
                 </Input>                              
                 <Input value={tel} onChange={changeTel} type="tel" text="Telephone" placeholder="Your number here">                
                     {
                         telerr &&
-                        <FormError error={telerr}/>  
+                        <FormError className="sm:mt-[-15px] md:mt-[-15px] lg:mt-[1px] mt-[-20px]" error={telerr}/>  
                     }          
                 </Input>                              
             </div>
@@ -239,7 +258,7 @@ const Signup = () => {
                 <Input value={address} onChange={changeAddress} type={"text"} text="Address 1" placeholder="4279 Zboncak Port Suite 6212">
                 {
                     addresserr &&
-                    <FormError error={addresserr}/>            
+                    <FormError className="sm:mt-[-15px] md:mt-[-15px] lg:mt-[1px] mt-[-20px]" error={addresserr}/>            
                 }
                 </Input>             
                 <Input type="text" text="Address 2" placeholder="( Optional )">
@@ -247,25 +266,25 @@ const Signup = () => {
                 <Input value={city} onChange={changeCity} type="text" text="City" placeholder="Your city">
                     {
                         cityerr &&
-                        <FormError error={cityerr}/> 
+                        <FormError className="sm:mt-[-15px] md:mt-[-15px] lg:mt-0 mt-[-20px]" error={cityerr}/> 
                     }           
                 </Input>           
                 <Input value={postcode} onChange={changePostcode} type="number" text="Post Code" placeholder="05228">
                     {
                         postcodeerr &&
-                        <FormError error={postcodeerr}/>  
+                        <FormError className="sm:mt-[-15px] md:mt-[-15px] lg:mt-0 mt-[-20px]" error={postcodeerr}/>  
                     }          
                 </Input>                              
                 <Input value={division} onChange={changeDivision} type="select" text="Division" placeholder="Please select">
                     {
                         divisionerr &&
-                        <FormError error={divisionerr}/>   
+                        <FormError className="sm:mt-[-15px] md:mt-[-15px] lg:mt-0 mt-[-20px]" error={divisionerr}/>   
                     }         
                 </Input> 
                 <Input value={district} onChange={changeDistrict} type="select" text="District" placeholder="Please select">
                     {
                         districterr &&
-                        <FormError error={districterr}/>   
+                        <FormError className="sm:mt-[-15px] md:mt-[-15px] lg:mt-0 mt-[-20px]" error={districterr}/>   
                     }         
                 </Input>
             </div> 
@@ -275,7 +294,7 @@ const Signup = () => {
                   <Inputforpassword value={password} onchange={changePassword} label="Password" id="Password" placeholder="Password">
                       {
                         passworderr &&  
-                        <FormError error={passworderr}/>   
+                        <FormError className="static flex" error={passworderr}/>   
                       }         
                     </Inputforpassword>
                     <Inputforpassword value={repeatpassword} onchange={changeRepeatpassword} label="Repeat Password" id="Repeat Password" placeholder="Repeat Password">
@@ -287,7 +306,7 @@ const Signup = () => {
              </div>
             </div>
             <div className="px-3 lg:px-0">
-            <div className='flex gap-x-[15px] lg:mt-[65px] mt-[35px]' >
+            <div className='flex gap-x-[15px] lg:mt-[65px] md:mt-[35px] sm:mt-[35px] mt-[50px]' >
             <div onClick={()=>{setcheckbox2(!checkbox2)}} className=' cursor-pointer relative w-4 h-4 border-2 border-[#767676]'>
                 <div className={`w-2 h-2 bg-[#767676] absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] ${checkbox2 ? "absolute":"hidden"}`}></div>
                 </div>
@@ -307,15 +326,15 @@ const Signup = () => {
 
            {
             spinner ?
-            <Button onClick={submit}  text="Log in" className="w-[200px] py-3 lg:mb-[140px] md:mb-32 sm:mb-24 mb-20"/>         
-            :<Blocks
+            <Button onClick={submit}  text="Sign up" className="w-[200px] py-3 lg:mb-[140px] md:mb-32 sm:mb-24 mb-20"/>         
+            :<ColorRing
+            visible={true}
             height="80"
             width="80"
-            color="#4fa94d"
-            ariaLabel="blocks-loading"
+            ariaLabel="color-ring-loading"
             wrapperStyle={{}}
-            wrapperClass="blocks-wrapper"
-            visible={true}
+            wrapperClass="color-ring-wrapper"
+            colors={['#262626']}
             />
            }
            

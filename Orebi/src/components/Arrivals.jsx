@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from "react-slick";
 import Container from './layer/Container'
 import ProductItems1 from './layer/products/ProductItem'
@@ -10,6 +10,8 @@ import ProductItem6 from './layer/products/ProductsItems6';
 import ProductItem9 from './layer/products/ProductItems9';
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import axios from 'axios'
+import ProductItem7 from './layer/products/ProductItems7';
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -32,6 +34,19 @@ function SamplePrevArrow(props) {
 }
 
 const Arrivals = () => {
+
+      let [product, setProduct] = useState([])
+
+     useEffect(()=>{
+        const getData = async ()=>{
+          let res = await axios.get("https://dummyjson.com/products")
+          setProduct(res.data.products);
+          
+        }
+
+        getData()
+     },[])
+
 
   var settings = {
     dots: false,
@@ -81,27 +96,13 @@ const Arrivals = () => {
 
       <Container className="max-w-[1640px]">
          <Slider {...settings}>
-          <div>
-            <ProductItems2 className="lg:!ml-9" offer="New"/>
-          </div>
-          <div>
-            <ProductItems5 className="lg:!ml-9" offer="New"/>
-          </div>
-          <div>
-            <ProductItems3 className="lg:!ml-9" offer="New"/>
-          </div>
-          <div>
-            <ProductItems4 className="lg:!ml-9" offer="New"/>
-          </div>
-          <div>
-            <ProductItems1 className="lg:!ml-9" offer="New"/>
-          </div>
-          <div>
-            <ProductItem6 className="lg:!ml-9" offer="New"/>
-          </div>
-          <div>
-            <ProductItem9 className="lg:!ml-9" offer="New"/>
-          </div>
+          {
+            product.map((item, index) =>{
+            <div key={index}>
+            <ProductItem7 src={item.thumbnail} productName={item.title} productPrice={item.price} brand={item.brand} className="lg:!ml-9"/>
+            </div>
+            } )
+          }
         </Slider>
       </Container>
 

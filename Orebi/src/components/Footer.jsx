@@ -90,7 +90,7 @@ const Footer = () => {
         </div>
         <div className="right flex flex-col justify-between">
             <Images className="hidden md:block" href="/" src={FooterLogo} alt="Footer_Logo.png"/>
-            <p className="text-[#6D6D6D] md:text-sm md:mr-36 text-xs text-center font-normal font-DM">2024 Orebi Minimal eCommerce Figma Template by Arabi</p>
+            <p className="text-[#6D6D6D] md:text-sm md:mr-36 text-xs text-center font-normal font-DM">2024 Orebi Minimal eCommerce Figma Template by <br/> MD.Jalal Uddin Arabi</p>
         </div>
       </Container>
     </div>

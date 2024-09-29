@@ -10,13 +10,13 @@ const About = () => {
       <Container className="px-3 lg:px-0">
         <Breadcrumb className="mb-[136px]" text="About"/>
         <div className="product flex justify-between">
-            <div className="productitem lg:w-[780px] w-[160px] lg:h-[776px] h-[170px] group">
+            <div className="productitem lg:w-[780px] md:w-[350px] md:h-[350px] sm:w-[300px] sm:h-[300px] w-[160px] lg:h-[776px] h-[170px] group">
                  <div className="image w-full h-full relative overflow-hidden">
                      <img className="w-full h-full object-cover" src={p1} />
                      <button className="absolute lg:bottom-16 bottom-3 left-[50%] translate-x-[-50%] lg:py-7 lg:px-24 py-2 px-4 bg-[#262626] text-[#FFFFFF] lg:font-bold lg:text-base font-normal text-[8px] border border-transparent hover:border-[#262626] hover:bg-white transition-all duration-300 hover:text-[#262626]">Our Brands</button>
                  </div>
             </div>
-            <div className=" productitem lg:w-[780px] w-[160px] lg:h-[776px] h-[170px] group">
+            <div className=" productitem md:w-[350px] md:h-[350px] lg:w-[780px] sm:w-[300px] sm:h-[300px] w-[160px] lg:h-[776px] h-[170px] group">
 
                  <div className="image w-full h-full relative overflow-hidden">
                      <img className="w-full h-full object-cover" src={p13} />

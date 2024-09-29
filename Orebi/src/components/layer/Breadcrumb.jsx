@@ -13,7 +13,7 @@ const Breadcrumb = ({text,className}) => {
       <span>Home</span>
       <FaAngleRight/>
       <span>{window.location.pathname.split("/")[1]}</span>
-      <span>{window.location.pathname.split("/")[2]}</span>
+      <span className="lowercase">{window.location.pathname.split("/")[2]}</span>
     </p>
     </div>
   )

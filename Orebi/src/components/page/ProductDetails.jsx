@@ -88,7 +88,7 @@ const ProductDetails = () => {
     ),
     customPaging: i => (
         <div
-            className="lg:w-[120px] w-10 lg:h-[120px] h-10 bg-cover cursor-pointer"
+            className="lg:w-[120px] md:w-[60px] md:h-[60px] w-10 lg:h-[120px] h-10 bg-cover cursor-pointer"
             style={{ backgroundImage: `url(${[item01, item02, item03, item04][i]})` }}
         >
         </div>
@@ -100,20 +100,20 @@ const ProductDetails = () => {
     <div>
         <Container className={`px-3 lg:px-0`}>
             <Breadcrumb className="lg:mt-[124px]" text="ProductDetails"/>
-            <div className="flex justify-between">
-            <div className='lg:w-[700px] w-[320px] lg:h-[700px] h-[320px] lg:mt-32 mt-8'>
+            <div className="lg:flex lg:justify-between">
+            <div className='lg:w-[700px] sm:w-[520px] w-[320px] lg:h-[700px] h-[320px] lg:mt-32 mt-8'>
                     <Slider  {...settings}>
                         <div className='lg:w-[700px] w-[320px] lg:h-[500px] h-[220px]'>
                             <Images className='lg:w-[700px] w-[320px] lg:h-[500px] h-[220px] object-cover' src={item01} alt="item01" />
                         </div>                      
                         <div className='lg:w-[700px] w-[320px] lg:h-[500px] h-[220px]'>
-                            <Images className='lg:w-[700px] w-[320px] lg:h-[500px] h-[220px] object-cover' src={item02} alt="item01" />
+                            <Images className='lg:w-[700px] w-[320px] lg:h-[500px] h-[220px] object-cover' src={item02} alt="item02" />
                         </div>                        
                         <div className='lg:w-[700px] w-[320px] lg:h-[500px] h-[220px]'>
-                            <Images className='lg:w-[700px] w-[320px] lg:h-[500px] h-[220px] object-cover' src={item03} alt="item01" />
+                            <Images className='lg:w-[700px] w-[320px] lg:h-[500px] h-[220px] object-cover' src={item03} alt="item03" />
                         </div>                       
                         <div className='lg:w-[700px] w-[320px] lg:h-[500px] h-[220px]'>
-                            <Images className='lg:w-[700px] w-[320px] lg:h-[500px] h-[220px] object-cover' src={item04} alt="item01" />
+                            <Images className='lg:w-[700px] w-[320px] lg:h-[500px] h-[220px] object-cover' src={item04} alt="item04" />
                         </div>                        
                     </Slider>
             </div>
@@ -146,9 +146,9 @@ const ProductDetails = () => {
                 </div>
                 <div className='mt-8'>
                 <label className='font-DM font-bold lg:text-base text-sm leading-7 text-[#262626] lg:mr-[76px]' >
-                <span className="mr-0 lg:text-base text-xs font-bold lg:leading-6 leading-4 ">SIZE:</span>
+                <span className="mr-0 pr-[76px] lg:text-base text-xs font-bold lg:leading-6 leading-4 ">SIZE:</span>
                 </label>
-                <select className='lg:w-[139px] lg:h-9 py-1 lg:px-5 px-1 lg:text-base text-sm leading-7 outline-none border border-[#F0F0F0] bg-transparent text-[#767676] cursor-pointer'>
+                <select className='lg:w-[139px] md:w-[139px] w-[70px] lg:h-9 py-1 lg:px-5 px-1 lg:text-base text-sm leading-7 outline-none border border-[#F0F0F0] bg-transparent text-[#767676] cursor-pointer'>
                 <option className='p-7'value="S">
                 S</option>
                 <option className='p-7'value="M">
@@ -159,7 +159,7 @@ const ProductDetails = () => {
                 XL</option>
                 </select>
                 </div>          
-                <p className='flex  items-center gap-x-8   py-[30px] border-b border-[#F0F0F0] w-[320px] lg:w-full lg:text-base text-xs font-bold lg:leading-6 leading-4'>QUANTITY:
+                <p className='flex  items-center gap-x-8   py-[30px] border-b border-[#F0F0F0] md:w-[320px] sm:w-[30px] w-[30px] lg:w-full lg:text-base text-xs font-bold lg:leading-6 leading-4'>QUANTITY:
 
                   <div className='flex w-[139px] h-[39px] text-[#767676] items-center border cursor-pointer'>
                   <div
@@ -220,8 +220,10 @@ const ProductDetails = () => {
                     <FaStar />
                     <FaStar />
                     <FaStar />
-                   </div>         
+                   </div>   
                   </div>                 
+                   <p className="pt-[14px] lg:text-base sm:text-sm text-xs text-[#767676] lg:pb-[30px] md:py-6 sm:py-4 py-3 border-b border-[#F0F0F0] lg:mb-[23px] md:mb-5 sm:mb-4 mb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                   </p>      
                   <div className='max-w-[780px] lg:mt-14 mt-8 flex flex-col lg:gap-y-6 gap-y-3'>
                     <Title className="!text-xl lg:mb-12" text="Add a Review"/>
                     <Input className="!w-full" text="Name" type="text" placeholder="Your name here"/>
